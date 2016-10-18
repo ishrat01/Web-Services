@@ -1,10 +1,14 @@
 package org.glassfish.jersy.archetypes;
 
+import javax.websocket.server.PathParam;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.glassfish.jersy.archetypes.Person;
+
+import com.sun.research.ws.wadl.Response;
 
 /*
  * Root resource (exposed at "myresource" path)
@@ -33,5 +37,24 @@ public class MyResource {
     	p.setAge(22);
     	p.setName("Neeraja");
     	return p;
+    }
+    /*@Path("person")
+    @POST
+    @Consumes
+    @Produces(value={MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+    public Person getPersonDetails1()
+    {
+    	Person p=new Person() ;
+    	p.setAge(22);
+    	p.setName("Neeraja");
+    	return p;
+    }*/
+    @GET
+    @Path("test/{id}")
+    @Produces(value={MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+    public void getSpecificPerson(@PathParam("id")String id)
+    {
+    	System.out.println("found the Id"+id);
+    	//return Response ;
     }
 }
